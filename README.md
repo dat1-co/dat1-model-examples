@@ -2,3 +2,7 @@
 
 This repository contains example models ready to deploy to the [Dat1.co](https://dat1.co) platform. 
 The models usually do not include weight files but contain instructions on where to get them and where to put them.
+
+# Models
+
+- [Kolors Stable Diffusion Model](./kolors)

@@ -1,8 +1,11 @@
-model_name: kolorsd
+model_name: kolors
 exclude:
-  - '**/.git/**'
-  - '**/.idea/**'
-  - '**/.DS_Store'
+  - '**.git/**'
+  - '**.idea/**'
+  - '**__pycache__/**'
+  - '**.DS_Store'
   - '*.md'
   - '*.jpg'
+  - '*.png'
   - .dat1.yaml
+  - README.md
