@@ -1,0 +1,8 @@
+model_name: kolorsd
+exclude:
+  - '**/.git/**'
+  - '**/.idea/**'
+  - '**/.DS_Store'
+  - '*.md'
+  - '*.jpg'
+  - .dat1.yaml
