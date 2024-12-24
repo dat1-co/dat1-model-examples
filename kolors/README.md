@@ -32,13 +32,13 @@ dat1 deploy
 You can use the model by sending a POST request to the Dat1 endpoint:
 
 ```bash
-curl --request POST 
-  --url https://api.dat1.co/api/v1/inference/kolors/invoke 
-  --header 'Content-Type: application/json' 
-  --header 'X-API-Key: <your api key>' 
-  --data '{
-	"input": {
-		"prompt": "A funny cat"
-	}
-}'
+curl --request POST \
+  --url https://api.dat1.co/api/v1/inference/kolors/invoke \
+  --header 'Content-Type: application/json' \
+  --header 'X-API-Key: <your api key>' \
+  --data '{ 
+	"input": { 
+		"prompt": "A funny cat" 
+	} 
+}' 
 ```
