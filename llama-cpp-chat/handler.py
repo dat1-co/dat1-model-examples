@@ -8,13 +8,14 @@ os.environ["MODEL"]=f"{str(ROOT_DIR/'model.gguf')}"
 os.environ["N_GPU_LAYERS"] = "-1"
 
 from fastapi import Request, Response
-from llama_cpp.server.app import create_app, create_chat_completion
+from llama_cpp.server.app import create_app, create_chat_completion, llama_outer_lock, llama_inner_lock
 
 
 app = create_app()
 
 @app.get("/")
 async def root():
+    assert not llama_outer_lock.locked() and not llama_inner_lock.locked(), "Locks are not released"
     return "OK"
 
 @app.post("/infer")(create_chat_completion)
