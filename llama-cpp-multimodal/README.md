@@ -15,7 +15,9 @@ You can also use multimodal models like [qwen2.5-vl](https://github.com/QwenLM/Q
 
 1. Download the model weights (in `.gguf` format) and place it in the `model.gguf` file.
 
-2. Deploy the model to Dat1:
+2. Download the multimodal model weights and place it in the `mmproj.gguf` file.
+
+3. Deploy the model to Dat1:
 
 ```bash
 dat1 deploy

@@ -11,7 +11,7 @@ from requests import Response as RequestsResponse
 ROOT_DIR = Path(__file__).parent
 
 process = subprocess.Popen(
-    ["/workspace/llama.cpp/build/bin/llama-server", "-m", str(ROOT_DIR / "model.gguf"), "--ctx-size", "128000", "-ngl", "999999", "--port", "8080"],
+    ["/workspace/llama.cpp/build/bin/llama-server", "-m", str(ROOT_DIR / "model.gguf"), "--mmproj", str(ROOT_DIR / "mmproj.gguf"), "--ctx-size", "128000", "-ngl", "999999", "--port", "8080"],
     stdout=subprocess.PIPE,
     stderr=subprocess.STDOUT,
     text=True,

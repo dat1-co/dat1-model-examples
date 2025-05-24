@@ -5,5 +5,6 @@ The models usually do not include weight files but contain instructions on where
 
 # Models
 
+- [Multimodal Chat, OpenAI-compatible](./llama-cpp-multimodal)
 - [LLama3 Chat, OpenAI-compatible](./llama-cpp-chat)
 - [Kolors Stable Diffusion Model](./kolors)
