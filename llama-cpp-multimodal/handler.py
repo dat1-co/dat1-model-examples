@@ -21,7 +21,7 @@ process = subprocess.Popen(
 
 # Wait for the "main: model loaded" line
 for line in process.stdout:
-    print(line, end='')  # Optionally echo output to console
+    print(line, end='')
     if "main: model loaded" in line:
         print("Model is loaded.")
         break
@@ -30,7 +30,6 @@ app = FastAPI()
 
 @app.get("/")
 async def root(response: Response):
-    # healthcheck localhost:8080 via requests
     try:
         response = requests.get("http://localhost:8080/health")
         if response.status_code == 200:
@@ -43,7 +42,6 @@ async def root(response: Response):
         return response.text()
 
 def event_generator(response: RequestsResponse):
-    # This function will yield events from the response stream
     client = sseclient.SSEClient(response)
     for event in client.events():
         yield {
@@ -58,13 +56,10 @@ async def infer(request: Request):
 
     try:
         response = requests.post("http://localhost:8080/v1/chat/completions", json=body, stream=body.get("stream", False))
-        # handle SSE
         if response.status_code == 200:
-            print("response headers", response.headers)
             if "text/event-stream" in response.headers.get("Content-Type", ""):
                 return EventSourceResponse(event_generator(response), sep="\n")
             else:
-                # Handle regular JSON response
                 return response.json()
         else:
             return response.text
@@ -73,13 +68,8 @@ async def infer(request: Request):
 
 @app.exception_handler(Exception)
 async def debug_exception_handler(request: Request, exc: Exception):
-    # Get the traceback from the current exception
     exc_type, exc_value, exc_tb = sys.exc_info()
-
-    # Format the traceback to a string
     formatted_traceback = "".join(
         traceback.format_exception(exc_type, exc_value, exc_tb)
     )
-
-    # Return it as a response with a 500 status code
     return Response(content=formatted_traceback, media_type="text/plain", status_code=500)
